@@ -1,0 +1,25 @@
+h1{
+  padding-left: 40px;
+  margin-top: auto;
+  padding-top: 30px;
+  background-color: rgba(2, 1, 13, 0.792);
+  height: 100px;
+  text-align: left;
+  font-size: 24px;
+  color: white;
+  font-style: arial;
+}
+body{
+  margin-top: auto;
+  background-color: grey;
+  text-align: center;
+  font-size: 16px;
+  line-height: 0.5;
+  color: black;
+  font-style: arial;
+}
+img{
+  width: 120px;
+  height: 120px;
+}
+
