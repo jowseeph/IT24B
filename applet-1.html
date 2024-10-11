@@ -27,6 +27,10 @@
         .spacer {
             margin-bottom: 1.5rem;
         }
+        .log-entry {
+            font-size: 0.9rem;
+            margin: 0.2rem 0;
+        }
     </style>
 </head>
 
@@ -68,18 +72,45 @@
 
         <h3>Click Button Event</h3>
         <button class="btn btn-success" id="alertButton" onclick="showAlert()">Display Alert</button>
+
+        <div class="spacer"></div>
+
+        <h3>Logs</h3>
+        <div id="logContainer"></div>
+        <h5>Total Logs: <span id="logCount">0</span></h5>
     </div>
 
     <script>
+        let logs = [];
+
         function updateDisplay() {
             const text = document.getElementById('textbox').value;
             document.getElementById('displayText').textContent = text || "Your text will appear here";
         }
 
         function showAlert() {
-            alert(" Input value: " + document.getElementById('textbox').value);
+            const inputValue = document.getElementById('textbox').value;
+            const timestamp = new Date().toLocaleString();
+            alert("Input value: " + inputValue);
+            logInput(inputValue, timestamp);
+        }
+
+        function logInput(value, timestamp) {
+            logs.push({ value, timestamp });
+            updateLogDisplay();
+        }
+
+        function updateLogDisplay() {
+            const logContainer = document.getElementById('logContainer');
+            logContainer.innerHTML = ''; // Clear previous logs
+            logs.forEach(log => {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'log-entry';
+                logEntry.textContent = `${log.timestamp}: ${log.value}`;
+                logContainer.appendChild(logEntry);
+            });
+            document.getElementById('logCount').textContent = logs.length; // Update total log count
         }
     </script>
 </body>
 </html>
-
